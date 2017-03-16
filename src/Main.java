@@ -7,7 +7,7 @@ public class Main extends JPanel{
     //delete
 
     public static void main(String[] args) {
-        JFrame window = new JFrame("Dodgeeeeeeeeeeeeeee");
+        JFrame window = new JFrame("Dodgeeeeeeeeeeeeeeee");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setBounds(0, 0, FRAMEWIDTH, FRAMEHEIGHT + 22); //(x, y, w, h) 22 due to title bar.
 
