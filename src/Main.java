@@ -4,8 +4,6 @@ public class Main extends JPanel{
 
     public static final int FRAMEWIDTH = 1400, FRAMEHEIGHT = 800;
 
-    //delete
-
     public static void main(String[] args) {
         JFrame window = new JFrame("Dodgeeeeeeeeeeeeeeee");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
