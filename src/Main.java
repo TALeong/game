@@ -11,7 +11,7 @@ public class Main extends JPanel{
 
             }
         });
-
+        timer.start();
         addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent mouseEvent) {
 
