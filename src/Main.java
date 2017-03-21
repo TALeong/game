@@ -68,7 +68,7 @@ public class Main extends JPanel{
         Main panel = new Main();
         panel.setSize(FRAMEWIDTH, FRAMEHEIGHT);
 
-//        panel.setFocusable(true);
+        panel.setFocusable(true);
         panel.grabFocus();
 
         window.add(panel);
