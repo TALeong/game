@@ -4,8 +4,13 @@ import java.awt.event.*;
 
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1400, FRAMEHEIGHT = 800;
-
+    private Timer timer;
     public Main() {
+        timer = new Timer(40, new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+
+            }
+        });
 
         addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent mouseEvent) {
