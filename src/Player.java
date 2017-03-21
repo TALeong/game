@@ -7,7 +7,7 @@ public class Player extends Sprite{
         super(new Point(Main.FRAMEWIDTH/2, Main.FRAMEHEIGHT/2), NORTH);
         setPic("player.png", NORTH);
     }
-}
+
     public void update(){
         if (!isDead)
             super.update();
@@ -23,3 +23,5 @@ public class Player extends Sprite{
     public boolean getDead(){
         return isDead;
     }
+
+}
