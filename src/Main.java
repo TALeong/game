@@ -5,7 +5,9 @@ import java.awt.event.*;
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1400, FRAMEHEIGHT = 800;
     private Timer timer;
+    private Player player;
     public Main() {
+        player = new Player();
         timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
 
@@ -62,6 +64,7 @@ public class Main extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+        player.draw(g2);
     }
 
     public static void main(String[] args) {
@@ -72,7 +75,7 @@ public class Main extends JPanel{
         Main panel = new Main();
         panel.setSize(FRAMEWIDTH, FRAMEHEIGHT);
 
-        panel.setFocusable(true);
+//        panel.setFocusable(true);
         panel.grabFocus();
 
         window.add(panel);
