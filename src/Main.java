@@ -1,12 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1400, FRAMEHEIGHT = 800;
     private Timer timer;
     private Player player;
+    private ArrayList<Sprite> enemies;
     public Main() {
+        enemies = new ArrayList<Sprite>();
         player = new Player();
         timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
