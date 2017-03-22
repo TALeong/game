@@ -10,7 +10,7 @@ public class Main extends JPanel{
         player = new Player();
         timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-
+                repaint();
             }
         });
         timer.start();
@@ -42,7 +42,9 @@ public class Main extends JPanel{
             }
 
             public void mouseMoved(MouseEvent mouseEvent) {
-
+                player.setDir(player.getDirection(player.getLoc(), mouseEvent.getPoint()));
+                player.update();
+                repaint();
             }
         });
 
@@ -59,6 +61,7 @@ public class Main extends JPanel{
 
             }
         });
+
     }
 
     public void paintComponent(Graphics g) {
