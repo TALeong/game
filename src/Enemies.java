@@ -21,4 +21,11 @@ public class Enemies extends Sprite {
     public void setBullets(ArrayList<Sprite> b) {
         bullets = b;
     }
+    public void deleteBullet(Sprite s) {
+        for(Sprite b: bullets) {
+            if(b.equals(s)) {
+                bullets.remove(b);
+            }
+        }
+    }
 }
