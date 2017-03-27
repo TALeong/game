@@ -1,10 +1,9 @@
 import java.awt.*;
+import java.util.ArrayList;
 
-/**
- * Created by elisa_zhang on 3/21/17.
- */
 public class Enemies extends Sprite {
     private int hp;
+    private ArrayList<Sprite> bullets;
     public Enemies(Point loc, int dir) {
         super(loc, dir);
         setPic("enemies.png", NORTH);
@@ -15,5 +14,11 @@ public class Enemies extends Sprite {
     }
     public void setHp(int n) {
         hp = n;
+    }
+    public ArrayList getBullets() {
+        return bullets;
+    }
+    public void setBullets(ArrayList<Sprite> b) {
+        bullets = b;
     }
 }

@@ -28,6 +28,7 @@ public class Main extends JPanel{
                     if(e.intersects(player)) {
                         player.setHp(player.getHp()-1);
                     }
+                    e.update();
                 }
                 repaint();
             }
