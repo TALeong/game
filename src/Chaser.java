@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Chaser extends Sprite {
     public Chaser(Point loc, int dir) {
         super(loc, dir);
-        setPic("blank.png", EAST);
+        setPic("bullet.png", EAST);
     }
     public void update(Sprite target) {
         int midX = target.getLoc().x + target.getPic().getWidth()/2;

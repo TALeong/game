@@ -96,7 +96,12 @@ public class Main extends JPanel{
         Graphics2D g2 = (Graphics2D)g;
         player.draw(g2);
         g2.drawString("HP: " + player.getHp(), 500, 500);
-
+        for(Sprite e: enemies) {
+            e.draw(g2);
+        }
+        for(Sprite o: obstacles) {
+            o.draw(g2);
+        }
         if(player.getHp()==0){
             g2.setColor(Color.BLACK);
             g2.fillRect(0,0,FRAMEWIDTH, FRAMEHEIGHT);
