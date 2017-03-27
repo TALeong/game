@@ -16,7 +16,6 @@ public class Main extends JPanel{
         level = 1;
         player = new Player();
         mouse = new Point(FRAMEWIDTH/2, 0);
-        loadLevel();
         timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 if(player.getHp() > 0) {
@@ -85,7 +84,7 @@ public class Main extends JPanel{
         enemies.clear();
         obstacles.clear();
         if(level == 1) {
-            enemies.add(new Enemies(new Point(100, 100), Sprite.NORTH));
+
         } else {
 
         }
@@ -95,14 +94,7 @@ public class Main extends JPanel{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         player.draw(g2);
-        g2.setFont(new Font("TimesRoman", Font.PLAIN, 40));
-        g2.drawString("HP: " + player.getHp(), 30, 40);
-        for(Sprite e: enemies) {
-            e.draw(g2);
-        }
-        for(Sprite o: obstacles) {
-            o.draw(g2);
-        }
+        g2.drawString("HP: " + player.getHp(), 500, 500);
     }
 
     public static void main(String[] args) {
