@@ -15,11 +15,11 @@ public class Main extends JPanel{
         obstacles = new ArrayList<Sprite>();
         level = 1;
         player = new Player();
-        mouse = new Point(FRAMEWIDTH/2, FRAMEHEIGHT/2);
+        mouse = new Point(FRAMEWIDTH/2, 0);
         timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 if(player.getHp() > 0) {
-                    player.setDir(player.getDirection(player.getLoc(), mouse));
+                    player.setDir(player.getDirection(player.getCenterPoint(), mouse));
                     player.update();
                     repaint();
                 }
@@ -34,7 +34,7 @@ public class Main extends JPanel{
         timer.start();
         addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent mouseEvent) {
-
+                System.out.println("X: " + mouseEvent.getX() + " Y: " + mouseEvent.getY());
             }
 
             public void mousePressed(MouseEvent mouseEvent) {
@@ -94,7 +94,7 @@ public class Main extends JPanel{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         player.draw(g2);
-        g2.drawString("HP: " + player.getHp(), 0, 0);
+        g2.drawString("HP: " + player.getHp(), 500, 500);
     }
 
     public static void main(String[] args) {
