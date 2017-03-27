@@ -96,6 +96,13 @@ public class Main extends JPanel{
         Graphics2D g2 = (Graphics2D)g;
         player.draw(g2);
         g2.drawString("HP: " + player.getHp(), 500, 500);
+
+        if(player.getHp()==0){
+            g2.setColor(Color.BLACK);
+            g2.fillRect(0,0,FRAMEWIDTH, FRAMEHEIGHT);
+            g2.setColor(Color.WHITE);
+            g2.drawString("lol", FRAMEWIDTH/2, FRAMEHEIGHT/2);
+        }
     }
 
     public static void main(String[] args) {
