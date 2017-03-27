@@ -11,7 +11,6 @@ public class Player extends Sprite{
     public void setHp(int n) {
         hp = n;
     }
-
     public int getHp() {
         return hp;
     }

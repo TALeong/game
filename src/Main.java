@@ -7,12 +7,20 @@ public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1400, FRAMEHEIGHT = 800;
     private Timer timer;
     private Player player;
-    private ArrayList<Sprite> enemies;
+    private int level;
+    private ArrayList<Sprite> enemies, obstacles;
     public Main() {
         enemies = new ArrayList<Sprite>();
+        obstacles = new ArrayList<Sprite>();
+        level = 1;
         player = new Player();
         timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
+                for(Sprite e: enemies) {
+                    if(e.intersects(player)) {
+
+                    }
+                }
                 repaint();
             }
         });
@@ -65,6 +73,16 @@ public class Main extends JPanel{
             }
         });
 
+    }
+
+    public void loadLevel() {
+        enemies.clear();
+        obstacles.clear();
+        if(level == 1) {
+
+        } else {
+
+        }
     }
 
     public void paintComponent(Graphics g) {
