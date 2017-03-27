@@ -8,14 +8,21 @@ public class Main extends JPanel{
     private Timer timer;
     private Player player;
     private int level;
+    private Point mouse;
     private ArrayList<Sprite> enemies, obstacles;
     public Main() {
         enemies = new ArrayList<Sprite>();
         obstacles = new ArrayList<Sprite>();
         level = 1;
         player = new Player();
+        mouse = new Point(FRAMEWIDTH/2, FRAMEHEIGHT/2);
         timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
+                if(player.getHp() > 0) {
+                    player.setDir(player.getDirection(player.getLoc(), mouse));
+                    player.update();
+                    repaint();
+                }
                 for(Sprite e: enemies) {
                     if(e.intersects(player)) {
                         player.setHp(player.getHp()-1);
@@ -53,9 +60,7 @@ public class Main extends JPanel{
             }
 
             public void mouseMoved(MouseEvent mouseEvent) {
-                player.setDir(player.getDirection(player.getLoc(), mouseEvent.getPoint()));
-                player.update();
-                repaint();
+                mouse = mouseEvent.getPoint();
             }
         });
 
