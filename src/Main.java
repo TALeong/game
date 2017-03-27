@@ -89,6 +89,7 @@ public class Main extends JPanel{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         player.draw(g2);
+        g2.drawString("HP: " + player.getHp(), 0, 0);
     }
 
     public static void main(String[] args) {
