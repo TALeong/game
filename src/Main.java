@@ -18,7 +18,7 @@ public class Main extends JPanel{
             public void actionPerformed(ActionEvent actionEvent) {
                 for(Sprite e: enemies) {
                     if(e.intersects(player)) {
-
+                        player.setHp(player.getHp()-1);
                     }
                 }
                 repaint();
