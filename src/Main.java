@@ -28,16 +28,21 @@ public class Main extends JPanel{
                     repaint();
                 }
                 for(Enemies e: enemies) {
-//                    for(Chaser b: e.getBullets()) {
-//                        if(b.intersects(player)) {
-//                            player.setHp(player.getHp()-1);
-//                        }
-//                    }
+                    for(Chaser b: e.getBullets()) {
+                        if(b.intersects(player)) {
+                            player.setHp(player.getHp()-1);
+                        }
+                        b.update(player);
+                    }
                     if(e.intersects(player)) {
 //                        player.setHp(player.getHp()-1);
                     }
-                    if(e.getBirthday() - System.currentTimeMillis() % 5000 == 0) {
+//                    System.out.println(e.getBirthday());
+//                    System.out.println(time);
+                    System.out.println((System.currentTimeMillis() - e.getBirthday()) % 5000);
+                    if((System.currentTimeMillis() - e.getBirthday())% 5000 <= 40) {
                         e.addBullet(new Chaser(e.getCenterPoint(), Sprite.NORTH));
+                        System.out.println("add");
                     }
                     e.update();
                 }
