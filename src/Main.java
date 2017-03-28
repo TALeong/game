@@ -11,10 +11,13 @@ public class Main extends JPanel{
     private Point mouse;
     private ArrayList<Sprite> obstacles;
     private ArrayList<Enemies> enemies;
+    private long time;
     public Main() {
         enemies = new ArrayList<Enemies>();
         obstacles = new ArrayList<Sprite>();
+        time = System.currentTimeMillis();
         level = 1;
+        loadLevel();
         player = new Player();
         mouse = new Point(FRAMEWIDTH/2, 0);
         timer = new Timer(40, new ActionListener() {
@@ -25,13 +28,16 @@ public class Main extends JPanel{
                     repaint();
                 }
                 for(Enemies e: enemies) {
-                    for(Chaser b: e.getBullets()) {
-                        if(b.intersects(player)) {
-
-                        }
-                    }
+//                    for(Chaser b: e.getBullets()) {
+//                        if(b.intersects(player)) {
+//                            player.setHp(player.getHp()-1);
+//                        }
+//                    }
                     if(e.intersects(player)) {
 //                        player.setHp(player.getHp()-1);
+                    }
+                    if(e.getBirthday() - System.currentTimeMillis() % 5000 == 0) {
+                        e.addBullet(new Chaser(e.getCenterPoint(), Sprite.NORTH));
                     }
                     e.update();
                 }
@@ -101,9 +107,13 @@ public class Main extends JPanel{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         player.draw(g2);
-        g2.drawString("HP: " + player.getHp(), 500, 500);
+        g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+        g2.drawString("HP: " + player.getHp(), 30, 50);
         for(Enemies e: enemies) {
             e.draw(g2);
+            for(Chaser c: e.getBullets()) {
+                c.draw(g2);
+            }
         }
         for(Sprite o: obstacles) {
             o.draw(g2);
