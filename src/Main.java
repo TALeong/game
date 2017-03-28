@@ -9,9 +9,10 @@ public class Main extends JPanel{
     private Player player;
     private int level;
     private Point mouse;
-    private ArrayList<Sprite> enemies, obstacles;
+    private ArrayList<Sprite> obstacles;
+    private ArrayList<Enemies> enemies;
     public Main() {
-        enemies = new ArrayList<Sprite>();
+        enemies = new ArrayList<Enemies>();
         obstacles = new ArrayList<Sprite>();
         level = 1;
         player = new Player();
@@ -23,9 +24,14 @@ public class Main extends JPanel{
                     player.update();
                     repaint();
                 }
-                for(Sprite e: enemies) {
+                for(Enemies e: enemies) {
+                    for(Chaser b: e.getBullets()) {
+                        if(b.intersects(player)) {
+
+                        }
+                    }
                     if(e.intersects(player)) {
-                        player.setHp(player.getHp()-1);
+//                        player.setHp(player.getHp()-1);
                     }
                     e.update();
                 }
@@ -85,7 +91,7 @@ public class Main extends JPanel{
         enemies.clear();
         obstacles.clear();
         if(level == 1) {
-
+            enemies.add(new Enemies(new Point(200, 200), Sprite.NORTH));
         } else {
 
         }
@@ -96,7 +102,7 @@ public class Main extends JPanel{
         Graphics2D g2 = (Graphics2D)g;
         player.draw(g2);
         g2.drawString("HP: " + player.getHp(), 500, 500);
-        for(Sprite e: enemies) {
+        for(Enemies e: enemies) {
             e.draw(g2);
         }
         for(Sprite o: obstacles) {

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Enemies extends Sprite {
     private int hp;
-    private ArrayList<Sprite> bullets;
+    private ArrayList<Chaser> bullets;
     public Enemies(Point loc, int dir) {
         super(loc, dir);
         setPic("enemies.png", NORTH);
@@ -15,14 +15,14 @@ public class Enemies extends Sprite {
     public void setHp(int n) {
         hp = n;
     }
-    public ArrayList getBullets() {
+    public ArrayList<Chaser> getBullets() {
         return bullets;
     }
-    public void setBullets(ArrayList<Sprite> b) {
+    public void setBullets(ArrayList<Chaser> b) {
         bullets = b;
     }
-    public void deleteBullet(Sprite s) {
-        for(Sprite b: bullets) {
+    public void deleteBullet(Chaser s) {
+        for(Chaser b: bullets) {
             if(b.equals(s)) {
                 bullets.remove(b);
             }
