@@ -31,6 +31,7 @@ public class Main extends JPanel{
                     for(Chaser b: e.getBullets()) {
                         if(b.intersects(player)) {
                             player.setHp(player.getHp()-1);
+
                         }
                         b.update(player);
                     }

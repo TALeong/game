@@ -27,6 +27,9 @@ public class Enemies extends Sprite {
     public void addBullet(Chaser c) {
         bullets.add(c);
     }
+    public void removeBullet(Chaser c) {
+        bullets.remove(c);
+    }
     public void deleteBullet(Chaser s) {
         for(Chaser b: bullets) {
             if(b.equals(s)) {
