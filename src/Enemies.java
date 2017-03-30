@@ -30,13 +30,7 @@ public class Enemies extends Sprite {
     public void removeBullet(Chaser c) {
         bullets.remove(c);
     }
-    public void deleteBullet(Chaser s) {
-        for(Chaser b: bullets) {
-            if(b.equals(s)) {
-                bullets.remove(b);
-            }
-        }
-    }
+
     public long getBirthday() {
         return birthday;
     }
