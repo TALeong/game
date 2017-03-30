@@ -12,6 +12,7 @@ public class Main extends JPanel{
     private ArrayList<Sprite> obstacles;
     private ArrayList<Enemies> enemies;
     private long time;
+    @SuppressWarnings("unchecked")
     public Main() {
         enemies = new ArrayList<Enemies>();
         obstacles = new ArrayList<Sprite>();
@@ -28,19 +29,19 @@ public class Main extends JPanel{
                     repaint();
                 }
                 for(Enemies e: enemies) {
+                    ArrayList<Chaser> clone = (ArrayList<Chaser>)e.getBullets().clone();
                     for(Chaser b: e.getBullets()) {
+                        b.update(player);
                         if(b.intersects(player)) {
                             player.setHp(player.getHp()-1);
-                            e.removeBullet(b);
+                            clone.remove(b);
                         }
-                        b.update(player);
                     }
+                    e.setBullets((ArrayList<Chaser>)clone.clone());
                     if(e.intersects(player)) {
 //                        player.setHp(player.getHp()-1);
                     }
-//                    System.out.println(e.getBirthday());
-//                    System.out.println(time);
-                    System.out.println((System.currentTimeMillis() - e.getBirthday()) % 5000);
+//                    System.out.println((System.currentTimeMillis() - e.getBirthday()) % 5000);
                     if((System.currentTimeMillis() - e.getBirthday())% 5000 <= 40) {
                         e.addBullet(new Chaser(e.getCenterPoint(), Sprite.NORTH));
                         System.out.println("add");
