@@ -227,5 +227,7 @@ public class Sprite {
     public int getSpeed() {
         return speed;
     }
+
+
 }
 

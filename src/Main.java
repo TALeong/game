@@ -36,6 +36,9 @@ public class Main extends JPanel{
                             player.setHp(player.getHp()-1);
                             clone.remove(b);
                         }
+                        if(b.getCounter()>=5 && b.intersects(e)){
+                            enemies.remove(e);
+                        }
                     }
                     e.setBullets((ArrayList<Chaser>)clone.clone());
                     if(e.intersects(player)) {
@@ -105,6 +108,8 @@ public class Main extends JPanel{
         obstacles.clear();
         if(level == 1) {
             enemies.add(new Enemies(new Point(200, 200), Sprite.NORTH));
+            enemies.add(new Enemies(new Point(300,400), Sprite.EAST));
+
         } else {
 
         }
@@ -125,7 +130,7 @@ public class Main extends JPanel{
         for(Sprite o: obstacles) {
             o.draw(g2);
         }
-        if(player.getHp()==0){
+        if(player.getHp()<=0){
             g2.setColor(Color.BLACK);
             g2.fillRect(0,0,FRAMEWIDTH, FRAMEHEIGHT);
             g2.setColor(Color.WHITE);
@@ -134,7 +139,8 @@ public class Main extends JPanel{
     }
 
     public static void main(String[] args) {
-        JFrame window = new JFrame("Dodgeeeeeeeeeeeeeeee");
+        JFrame window = new JFrame("Dodgeeee" +
+                "eeeeeeeeeeee");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setBounds(0, 0, FRAMEWIDTH, FRAMEHEIGHT + 22); //(x, y, w, h) 22 due to title bar.
 
