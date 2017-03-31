@@ -40,14 +40,12 @@ public class Main extends JPanel{
                             clone.remove(b);
                         }else if(b.intersects(e) && (System.currentTimeMillis() - b.getBirthday())/1000 >= 1) {
                             e.setHp(e.getHp()-1);
+//                            b.setBirthday(System.currentTimeMillis());
+                            clone.remove(b);
                             System.out.println(e.getHp());
                             if(e.getHp() <= 0) {
                                 enemy.remove(e);
-                                clone.remove(b);
                             }
-                        }
-                        if(b.getCounter()>=5 && b.intersects(e)){
-                            enemies.remove(e);
                         }
                     }
                     e.setBullets((ArrayList<Chaser>)clone.clone());
