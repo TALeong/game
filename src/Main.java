@@ -12,6 +12,7 @@ public class Main extends JPanel{
     private ArrayList<Sprite> obstacles;
     private ArrayList<Enemies> enemies;
     private long time;
+
     @SuppressWarnings("unchecked")
     public Main() {
         enemies = new ArrayList<Enemies>();
@@ -29,18 +30,28 @@ public class Main extends JPanel{
                     repaint();
                 }
                 for(Enemies e: enemies) {
+                    ArrayList<Enemies> enemy = (ArrayList<Enemies>)enemies.clone();
                     ArrayList<Chaser> clone = (ArrayList<Chaser>)e.getBullets().clone();
                     for(Chaser b: e.getBullets()) {
+//                        System.out.println(System.currentTimeMillis() - b.getBirthday());
                         b.update(player);
                         if(b.intersects(player)) {
                             player.setHp(player.getHp()-1);
                             clone.remove(b);
+                        }else if(b.intersects(e) && (System.currentTimeMillis() - b.getBirthday())/1000 >= 1) {
+                            e.setHp(e.getHp()-1);
+                            System.out.println(e.getHp());
+                            if(e.getHp() <= 0) {
+                                enemy.remove(e);
+                                clone.remove(b);
+                            }
                         }
                         if(b.getCounter()>=5 && b.intersects(e)){
                             enemies.remove(e);
                         }
                     }
                     e.setBullets((ArrayList<Chaser>)clone.clone());
+
                     if(e.intersects(player)) {
 //                        player.setHp(player.getHp()-1);
                     }
@@ -50,6 +61,7 @@ public class Main extends JPanel{
                         System.out.println("add");
                     }
                     e.update();
+                    enemies = enemy;
                 }
                 repaint();
             }

@@ -9,6 +9,7 @@ public class Enemies extends Sprite {
         super(loc, dir);
         setPic("enemies.png", NORTH);
         setSpeed(0);
+        hp = 5;
         birthday = System.currentTimeMillis();
         bullets = new ArrayList<Chaser>();
     }

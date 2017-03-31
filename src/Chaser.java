@@ -2,16 +2,14 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Chaser extends Sprite {
-
-    private int counter;
+    private long birthday;
 
     public Chaser(Point loc, int dir) {
         super(loc, dir);
         setPic("bullet.png", EAST);
-        counter = 0;
+        birthday = System.currentTimeMillis();
     }
     public void update(Sprite target) {
-        counter++;
         int midX = target.getLoc().x + target.getPic().getWidth()/2;
         int midY = target.getLoc().y + target.getPic().getHeight()/2;
         int selfX = getLoc().x + getPic().getWidth()/2;
@@ -21,7 +19,11 @@ public class Chaser extends Sprite {
         super.update();
     }
 
-    public int getCounter() {
-        return counter;
+    public long getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(long birthday) {
+        this.birthday = birthday;
     }
 }
