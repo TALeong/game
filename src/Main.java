@@ -32,7 +32,6 @@ public class Main extends JPanel{
                 for(Enemies e: enemies) {
                     ArrayList<Enemies> enemy = (ArrayList<Enemies>)enemies.clone();
                     ArrayList<Chaser> clone = (ArrayList<Chaser>)e.getBullets().clone();
-
                     for(Chaser b: e.getBullets()) {
 //                        System.out.println(System.currentTimeMillis() - b.getBirthday());
                         b.update(player);
