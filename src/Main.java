@@ -128,7 +128,9 @@ public class Main extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+        g2.fillRect(0, 0, FRAMEWIDTH, FRAMEHEIGHT);
         player.draw(g2);
+        g2.setColor(Color.WHITE);
         g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
         g2.drawString("HP: " + player.getHp(), 30, 50);
         for(Enemies e: enemies) {
@@ -141,7 +143,7 @@ public class Main extends JPanel{
             o.draw(g2);
         }
         if(player.getHp()<=0){
-            g2.setColor(Color.BLACK);
+            g2.setColor(Color.RED);
             g2.fillRect(0,0,FRAMEWIDTH, FRAMEHEIGHT);
             g2.setColor(Color.WHITE);
             g2.drawString("lol", FRAMEWIDTH/2, FRAMEHEIGHT/2);
