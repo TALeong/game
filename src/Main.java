@@ -34,17 +34,25 @@ public class Main extends JPanel{
                     ArrayList<Chaser> clone = (ArrayList<Chaser>)e.getBullets().clone();
                     for(Chaser b: e.getBullets()) {
 //                        System.out.println(System.currentTimeMillis() - b.getBirthday());
+//                        if(b.isSpawned()) {
+//                            System.out.println(b.isSpawned());
+//                        }
                         b.update(player);
+                        if(!b.intersects(e)) {
+                            b.setSpawned(false);
+                        }
                         if(b.intersects(player)) {
                             player.setHp(player.getHp()-1);
                             clone.remove(b);
-                        }else if(b.intersects(e) && (System.currentTimeMillis() - b.getBirthday())/1000 >= 1) {
-                            e.setHp(e.getHp()-1);
-//                            b.setBirthday(System.currentTimeMillis());
-                            clone.remove(b);
-                            System.out.println(e.getHp());
-                            if(e.getHp() <= 0) {
-                                enemy.remove(e);
+                        }
+                        for(Enemies t: enemies) {
+                            if (b.intersects(t) && (!b.isSpawned() || (System.currentTimeMillis() - b.getBirthday()) >= 1000)) {
+                                t.setHp(e.getHp() - 1);
+                                clone.remove(b);
+//                                System.out.println(t.getHp());
+                                if (t.getHp() <= 0) {
+                                    enemy.remove(t);
+                                }
                             }
                         }
                     }
