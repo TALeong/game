@@ -7,11 +7,12 @@ public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1400, FRAMEHEIGHT = 800;
     private Timer timer;
     private Player player;
-    private int level;
+    private int level, a, b;
     private Point mouse;
     private ArrayList<Sprite> obstacles;
     private ArrayList<Enemies> enemies;
     private long time;
+    private int[] x, y;
 
     @SuppressWarnings("unchecked")
     public Main() {
@@ -22,6 +23,13 @@ public class Main extends JPanel{
         loadLevel();
         player = new Player();
         mouse = new Point(FRAMEWIDTH/2, 0);
+        for (int i = 0; i < 50; i++) {
+            a = (int)(Math.random()*FRAMEWIDTH);
+            b = (int)(Math.random()*FRAMEHEIGHT);
+            x[i] = a;
+            y[i] = b;
+        }
+
         timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 if(player.getHp() > 0) {
@@ -134,11 +142,17 @@ public class Main extends JPanel{
     }
 
     public void paintComponent(Graphics g) {
+
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         g2.fillRect(0, 0, FRAMEWIDTH, FRAMEHEIGHT);
-        player.draw(g2);
         g2.setColor(Color.WHITE);
+        for (int i = 0; i < 50; i++) {
+            g2.fillOval(x[i],y[i],4,4);
+        }
+
+        player.draw(g2);
+
         g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
         g2.drawString("HP: " + player.getHp(), 30, 50);
         for(Enemies e: enemies) {
@@ -156,6 +170,7 @@ public class Main extends JPanel{
             g2.setColor(Color.WHITE);
             g2.drawString("lol", FRAMEWIDTH/2, FRAMEHEIGHT/2);
         }
+
     }
 
     public static void main(String[] args) {
