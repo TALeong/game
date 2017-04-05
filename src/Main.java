@@ -23,7 +23,10 @@ public class Main extends JPanel{
         loadLevel();
         player = new Player();
         mouse = new Point(FRAMEWIDTH/2, 0);
-        for (int i = 0; i < 50; i++) {
+        x = new int[110];
+        y = new int[110];
+
+        for (int i = 0; i < 110; i++) {
             a = (int)(Math.random()*FRAMEWIDTH);
             b = (int)(Math.random()*FRAMEHEIGHT);
             x[i] = a;
@@ -133,7 +136,7 @@ public class Main extends JPanel{
         enemies.clear();
         obstacles.clear();
         if(level == 1) {
-            enemies.add(new Enemies(new Point(200, 200), Sprite.NORTH));
+            enemies.add(new Enemies(new Point(900, 200), Sprite.WEST));
             enemies.add(new Enemies(new Point(300,400), Sprite.EAST));
 
         } else {
@@ -147,8 +150,14 @@ public class Main extends JPanel{
         Graphics2D g2 = (Graphics2D)g;
         g2.fillRect(0, 0, FRAMEWIDTH, FRAMEHEIGHT);
         g2.setColor(Color.WHITE);
-        for (int i = 0; i < 50; i++) {
-            g2.fillOval(x[i],y[i],4,4);
+        for (int i = 0; i < 110; i++) {
+            if(i%6 ==0){
+                int ex[] = {x[i],x[i]-2, x[i]-8, x[i]-2, x[i], x[i]+2, x[i]+8, x[i]+2};
+                int why[] = {y[i]+15,y[i]+3,y[i], y[i]-3, y[i]-15, y[i]-3, y[i], y[i]+3};
+                g2.fillPolygon(ex, why, 8);
+            }
+            else
+                g2.fillOval(x[i],y[i],4,4);
         }
 
         player.draw(g2);
