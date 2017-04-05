@@ -22,6 +22,8 @@ public class Main extends JPanel{
         loadLevel();
         player = new Player();
         mouse = new Point(FRAMEWIDTH/2, 0);
+
+
         timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 if(player.getHp() > 0) {
