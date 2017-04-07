@@ -4,7 +4,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 //enemies wont die
-//levels change
 
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1400, FRAMEHEIGHT = 800;
@@ -85,6 +84,11 @@ public class Main extends JPanel{
                     enemies = enemy;
 
                 }
+                if(enemies.size()<=0){
+                    level++;
+                    loadLevel();
+                }
+
                 repaint();
             }
         });
