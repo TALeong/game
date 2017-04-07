@@ -62,6 +62,8 @@ public class Main extends JPanel{
                             if (b.intersects(t) && (!b.isSpawned() || (System.currentTimeMillis() - b.getBirthday()) >= 1000)) {
                                 t.setHp(e.getHp() - 1);
                                 clone.remove(b);
+
+                                System.out.println(t.getHp());
 //                                System.out.println(t.getHp());
 
                             }
@@ -69,6 +71,7 @@ public class Main extends JPanel{
                                 enemy.remove(t);
                             }
                         }
+
                     }
                     e.setBullets((ArrayList<Chaser>)clone.clone());
 
