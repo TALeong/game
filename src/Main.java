@@ -63,13 +63,12 @@ public class Main extends JPanel{
                                 t.setHp(e.getHp() - 1);
                                 clone.remove(b);
 
-                                System.out.println(t.getHp());
 //                                System.out.println(t.getHp());
+                                if (t.getHp() <= 0) {
+                                    enemy.remove(t);
+                                }
+                            }
 
-                            }
-                            if (t.getHp() <= 0) {
-                                enemy.remove(t);
-                            }
                         }
 
                     }
