@@ -10,6 +10,7 @@ public class Chaser extends Sprite {
         setPic("bullet.png", EAST);
         birthday = System.currentTimeMillis();
         spawned = true;
+        setSpeed(10);
     }
     public void update(Sprite target) {
         int midX = target.getLoc().x + target.getPic().getWidth()/2;

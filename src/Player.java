@@ -5,8 +5,8 @@ public class Player extends Sprite{
     public Player() {
         super(new Point(Main.FRAMEWIDTH/2, Main.FRAMEHEIGHT/2), NORTH);
         setPic("player.png", NORTH);
-        setSpeed(10);
-        hp = 5;
+        setSpeed(16);
+        hp = 50;
     }
 
     public void setHp(int n) {

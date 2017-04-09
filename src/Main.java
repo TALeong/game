@@ -7,11 +7,12 @@ public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1400, FRAMEHEIGHT = 800;
     private Timer timer;
     private Player player;
-    private int level;
+    private int level, a, b;
     private Point mouse;
     private ArrayList<Sprite> obstacles;
     private ArrayList<Enemies> enemies;
     private long time;
+    private int[] x, y;
 
     @SuppressWarnings("unchecked")
     public Main() {
@@ -22,7 +23,15 @@ public class Main extends JPanel{
         loadLevel();
         player = new Player();
         mouse = new Point(FRAMEWIDTH/2, 0);
+        x = new int[110];
+        y = new int[110];
 
+        for (int i = 0; i < 110; i++) {
+            a = (int)(Math.random()*FRAMEWIDTH);
+            b = (int)(Math.random()*FRAMEHEIGHT);
+            x[i] = a;
+            y[i] = b;
+        }
 
         timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -71,6 +80,11 @@ public class Main extends JPanel{
                     e.update();
                     enemies = enemy;
                 }
+                if(enemies.size()<=0){
+                    level++;
+                    loadLevel();
+                }
+
                 repaint();
             }
         });
@@ -127,8 +141,50 @@ public class Main extends JPanel{
         enemies.clear();
         obstacles.clear();
         if(level == 1) {
-            enemies.add(new Enemies(new Point(200, 200), Sprite.NORTH));
+            enemies.add(new Enemies(new Point(900, 200), Sprite.WEST));
             enemies.add(new Enemies(new Point(300,400), Sprite.EAST));
+            enemies.add(new Enemies(new Point(700,600), Sprite.EAST));
+
+        }
+        if(level == 2) {
+            enemies.add(new Enemies(new Point(50, 600), Sprite.EAST));
+            enemies.add(new Enemies(new Point(300,250), Sprite.SE));
+            enemies.add(new Enemies(new Point(650,50), Sprite.SOUTH));
+            enemies.add(new Enemies(new Point(1000, 250), Sprite.SW));
+            enemies.add(new Enemies(new Point(1250,600), Sprite.WEST));
+
+
+        }
+        if(level == 3) {
+            enemies.add(new Enemies(new Point(100, 100), Sprite.SOUTH));
+            enemies.add(new Enemies(new Point(300,100), Sprite.EAST));
+            enemies.add(new Enemies(new Point(900,100), Sprite.NORTH));
+            enemies.add(new Enemies(new Point(100, 400), Sprite.SE));
+            enemies.add(new Enemies(new Point(100,600), Sprite.EAST));
+            enemies.add(new Enemies(new Point(1230,630), Sprite.NW));
+
+        }
+        if(level == 4) {
+            enemies.add(new Enemies(new Point(50, 50), Sprite.SE));
+            enemies.add(new Enemies(new Point(250,350), Sprite.EAST));
+            enemies.add(new Enemies(new Point(50,650), Sprite.NE));
+            enemies.add(new Enemies(new Point(650,550), Sprite.NORTH));
+            enemies.add(new Enemies(new Point(1250,650), Sprite.NW));
+            enemies.add(new Enemies(new Point(1050,350), Sprite.WEST));
+            enemies.add(new Enemies(new Point(1250,50), Sprite.SW));
+            enemies.add(new Enemies(new Point(650,150), Sprite.SOUTH));
+
+        }
+        if(level == 5) {
+            enemies.add(new Enemies(new Point(100, 150), Sprite.WEST));
+            enemies.add(new Enemies(new Point(200,530), Sprite.NW));
+            enemies.add(new Enemies(new Point(400, 200), Sprite.NE));
+            enemies.add(new Enemies(new Point(500,376), Sprite.EAST));
+            enemies.add(new Enemies(new Point(600,600), Sprite.SE));
+            enemies.add(new Enemies(new Point(800,400), Sprite.SW));
+            enemies.add(new Enemies(new Point(900,12), Sprite.WEST));
+            enemies.add(new Enemies(new Point(1000, 550), Sprite.NW));
+            enemies.add(new Enemies(new Point(1100,70), Sprite.NORTH));
 
         } else {
 
@@ -139,10 +195,26 @@ public class Main extends JPanel{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         g2.fillRect(0, 0, FRAMEWIDTH, FRAMEHEIGHT);
-        player.draw(g2);
         g2.setColor(Color.WHITE);
+        for (int i = 0; i < 110; i++) {
+            if(i%6 ==0){
+                int ex[] = {x[i],x[i]-2, x[i]-8, x[i]-2, x[i], x[i]+2, x[i]+8, x[i]+2};
+                int why[] = {y[i]+15,y[i]+3,y[i], y[i]-3, y[i]-15, y[i]-3, y[i], y[i]+3};
+                g2.fillPolygon(ex, why, 8);
+            }
+            else
+                g2.fillOval(x[i],y[i],4,4);
+        }
+
+        player.draw(g2);
+        if(player.getHp()<=5){
+            g2.setColor(Color.RED);
+        }
         g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
         g2.drawString("HP: " + player.getHp(), 30, 50);
+        g2.drawRect(30,70,200,30);
+        g2.fillRect(30,70,player.getHp()*4,30);
+        g2.setColor(Color.WHITE);
         for(Enemies e: enemies) {
             e.draw(g2);
             for(Chaser c: e.getBullets()) {
