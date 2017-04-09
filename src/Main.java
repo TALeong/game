@@ -58,9 +58,9 @@ public class Main extends JPanel{
                         }
                         for(Enemies t: enemies) {
                             if (b.intersects(t) && (!b.isSpawned() || (System.currentTimeMillis() - b.getBirthday()) >= 1000)) {
-                                t.setHp(e.getHp() - 1);
+                                t.setHp(t.getHp() - 1);
                                 clone.remove(b);
-//                                System.out.println(t.getHp());
+                                System.out.println(t.getHp());
                                 if (t.getHp() <= 0) {
                                     enemy.remove(t);
                                 }
@@ -75,7 +75,7 @@ public class Main extends JPanel{
 //                    System.out.println((System.currentTimeMillis() - e.getBirthday()) % 5000);
                     if((System.currentTimeMillis() - e.getBirthday())% 5000 <= 40) {
                         e.addBullet(new Chaser(e.getCenterPoint(), Sprite.NORTH));
-                        System.out.println("add");
+//                        System.out.println("add");
                     }
                     e.update();
                     enemies = enemy;
@@ -144,7 +144,6 @@ public class Main extends JPanel{
             enemies.add(new Enemies(new Point(900, 200), Sprite.WEST));
             enemies.add(new Enemies(new Point(300,400), Sprite.EAST));
             enemies.add(new Enemies(new Point(700,600), Sprite.EAST));
-
         }
         if(level == 2) {
             enemies.add(new Enemies(new Point(50, 600), Sprite.EAST));
@@ -152,8 +151,6 @@ public class Main extends JPanel{
             enemies.add(new Enemies(new Point(650,50), Sprite.SOUTH));
             enemies.add(new Enemies(new Point(1000, 250), Sprite.SW));
             enemies.add(new Enemies(new Point(1250,600), Sprite.WEST));
-
-
         }
         if(level == 3) {
             enemies.add(new Enemies(new Point(100, 100), Sprite.SOUTH));
